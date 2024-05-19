@@ -1,4 +1,5 @@
 import requests
+import time
 from utils.logger import Logger
 
 class DirectoryBruteforcer:
@@ -9,7 +10,7 @@ class DirectoryBruteforcer:
 
     logger : Logger = None
 
-    def __init__(self, target : str, wordlistPath : str = '../../wordlists/directory_bruteforce/directory-list-2.3-medium.txt'):
+    def __init__(self, target : str, wordlistPath : str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt'):
         '''
             Instances a Directory bruteforcer for the given target and using the provided wordlist
             for enumeration
@@ -24,13 +25,15 @@ class DirectoryBruteforcer:
         '''
             Checks if a directory exists on the target server
         '''
-        url = self.target + directory
+        url = self.target + '/' + directory
 
         try:
 
+            #time.sleep(0.5)
+
             response = requests.get(url)
-            if response.status_code in [200, 301]:
-                self.logger.log(url, response.status_code)
+            if response.status_code in [200,300,301,302]:
+                self.logger.log_bruteforceDiscovery(f'[URL: {url}] [RC: {response.status_code}]', response.status_code)
 
         except requests.RequestException as e:
             print(f'Error checking {url}: {e}')

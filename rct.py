@@ -7,6 +7,7 @@
 
 import argparse
 from utils.header import HeaderPrinter as logo
+from src.orchestrator import Orchestrator
 
 
 def buildArgs():
@@ -20,22 +21,21 @@ def buildArgs():
     parser.add_argument('-v', '--version', action='version', version=f'{logo.header}')
 
     # DIRECTORY DISCOVERY module flags
-    parser.add_argument('-bD', '--bruteforceDirectory', help='Toggle directory discovery via bruteforce enumeration. [Requires: --url]')
-    parser.add_argument('-cD', '--crawlDirectory', help='Toggle directory discovery by crawling the DOM of any link found in the target URL. [Requires: --url]')
+    parser.add_argument('-bD', '--bruteforceDirectory', help='Toggle directory discovery via bruteforce enumeration.')
+    parser.add_argument('-cD', '--crawlDirectory', help='Toggle directory discovery by crawling the DOM of any link found in the target URL.')
     
     # SUBDOMAIN DISCOVERY module flags
-    parser.add_argument('-bS', '--bruteforceSubdomain', help='Toggle subdomain discovery via bruteforce enumeration. [Requires: --url]')
-    parser.add_argument('-oS', '--osintSubdomain', help='Toggle subdomain enumeration via consulting open source intelligence. [Requires: --url]')
+    parser.add_argument('-bS', '--bruteforceSubdomain', help='Toggle subdomain discovery via bruteforce enumeration.')
+    parser.add_argument('-oS', '--osintSubdomain', help='Toggle subdomain enumeration via consulting open source intelligence.')
 
     # INJECTION POINT module flags
-    parser.add_argument('-fS', '--findSurface', help='Toggle automatic discovery of potential injection points within a URLs DOM. [Requires: --url]')
-    parser.add_argument('-r', '--rake', help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values) [Requires: --url]')
+    parser.add_argument('-fS', '--findSurface', help='Toggle automatic discovery of potential injection points within a URLs DOM.')
+    parser.add_argument('-r', '--rake', help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values)')
 
     #---
 
     # SETTINGS FLAGS
-    # !!! - Currently all enumerations run at 1 thread and 2 requests/second. 14/May/2024
-    parser.add_argument('-u', '--url', help='The specified target of any module called before this flag.')
+    # !!! - Currently all enumerations run at 1 thread and 2 requests/second. 14/May/2024W
 
 
     #--- END ---
