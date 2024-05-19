@@ -17,7 +17,7 @@ def buildArgs():
     parser = argparse.ArgumentParser(description="Recon-Toupa")
 
     # version flag
-    parser.add_argument('-v', '--version', action='version', version=f'{HeaderPrinter.header}')
+    parser.add_argument('-v', '--version', action='version', version=f'{logo.header}')
 
     # DIRECTORY DISCOVERY module flags
     parser.add_argument('-bD', '--bruteforceDirectory', help='Toggle directory discovery via bruteforce enumeration. [Requires: --url]')
