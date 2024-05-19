@@ -1,3 +1,5 @@
+from directory_enumeration.directory_bruteforcer import DirectoryBruteforcer
+
 class Orchestrator:
     '''
         Controller of module loading 
@@ -10,11 +12,19 @@ class Orchestrator:
 
         self.args = args
 
-    def run():
+    def run(self):
+        '''
+            Parses the stored arguments and executes the corresponding modules
+        '''
 
-        if args.bruteforceDirectory and args.url:
+        if self.args.bruteforceDirectory and self.args.url:
 
-            pass # TODO
+            run_module_bruteDir(self)
 
         else:
             print('[!!!] Usage incorrect, please check -h/--help for instructions.')
+
+
+    def run_module_bruteDir(self):
+            bruteforcer_module = DirectoryBruteforcer(self.arg.url, self.args.bruteforceDirectory)
+            bruteforcer_module.run()
