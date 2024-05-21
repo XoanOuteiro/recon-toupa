@@ -15,6 +15,9 @@ class DirectoryBruteforcer:
             Instances a Directory bruteforcer for the given target and using the provided wordlist
             for enumeration
         '''
+
+        print('>> Bruteforcing directories ...')
+
         self.logger = Logger()
 
         self.target = target
@@ -33,7 +36,7 @@ class DirectoryBruteforcer:
 
             response = requests.get(url)
             if response.status_code in [200,300,301,302]:
-                self.logger.log_bruteforceDiscovery(f'[URL: {url}] [RC: {response.status_code}]', response.status_code)
+                self.logger.log_bruteforceDiscovery(url, response.status_code)
 
         except requests.RequestException as e:
             print(f'Error checking {url}: {e}')

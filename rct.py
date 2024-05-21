@@ -6,7 +6,7 @@
 '''
 
 import argparse
-from utils.header import HeaderPrinter as logo
+from utils.header import HeaderPrinter
 from src.orchestrator import Orchestrator
 
 
@@ -18,7 +18,7 @@ def buildArgs():
     parser = argparse.ArgumentParser(description="Recon-Toupa")
 
     # version flag
-    parser.add_argument('-v', '--version', action='version', version=f'{logo.header}')
+    parser.add_argument('-v', '--version', action='version', version=f'{HeaderPrinter.currentVersion}')
 
     # DIRECTORY DISCOVERY module flags
     parser.add_argument('-bD', '--bruteforceDirectory', help='Toggle directory discovery via bruteforce enumeration.')
@@ -46,8 +46,8 @@ def startProgram(args):
         Prints logo, header and instances an Orchestrator entity
     '''
 
-    print(logo.logoAscii)
-    print(logo.header)
+    header = HeaderPrinter()
+    header.print_header_and_logo()
 
     mainOrchestrator = Orchestrator(args)
     mainOrchestrator.run()

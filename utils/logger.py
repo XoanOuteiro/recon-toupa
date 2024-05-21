@@ -1,5 +1,17 @@
 from datetime import datetime
-from colorama import init, Fore, Style
+from rich.console import Console
+from rich.theme import Theme
+from rich.panel import Panel
+from rich.text import Text
+
+theme = Theme({
+    "success": "green",
+    "redirect": "yellow",
+    "client_error": "red",
+    "server_error": "blue"
+})
+
+console = Console(theme=theme)
 
 class Logger:
     '''
@@ -7,25 +19,38 @@ class Logger:
     '''
 
     def __init__(self):
-        init(autoreset=True)
+        pass
 
     def log_bruteforceDiscovery(self, message, status_code):
         '''
             Log a message and add a datetime timestamp with colored output based on status_code
         '''
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        color = None
+        prefix_color = "bold blue"
 
         if 200 <= status_code < 300:
-            color = Fore.GREEN
+            color = "success"
         elif 300 <= status_code < 400:
-            color = Fore.YELLOW
+            color = "redirect"
         elif 400 <= status_code < 500:
-            color = Fore.RED
+            color = "client_error"
         elif 500 <= status_code < 600:
-            color = Fore.BLUE
-
-        if color:
-            print(f'[{current_time}] - {color}{message}{Style.RESET_ALL}')  # Reset color after message
+            color = "server_error"
         else:
-            print(f'[{current_time}] - {message}')
+            color = None
+
+        dt_prefix = Text("DT: ", style=prefix_color)
+        dt_text = Text(current_time, style="white")
+
+        url_prefix = Text("URL: ", style=prefix_color)
+        url_text = Text(message, style="cyan")
+
+        rc_prefix = Text("RC: ", style=prefix_color)
+        rc_text = Text(str(status_code), style=color)
+
+        log_message = dt_prefix + dt_text + "\n" + url_prefix + url_text + "\n" + rc_prefix + rc_text
+        
+        if color:
+            console.print(Panel(log_message, border_style=color))
+        else:
+            console.print(Panel(log_message))
