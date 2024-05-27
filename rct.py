@@ -21,15 +21,15 @@ def buildArgs():
     parser.add_argument('-v', '--version', action='version', version=f'{HeaderPrinter.currentVersion}')
 
     # DIRECTORY DISCOVERY module flags
-    parser.add_argument('-bD', '--bruteforceDirectory', help='Toggle directory discovery via bruteforce enumeration.')
-    parser.add_argument('-cD', '--crawlDirectory', help='Toggle directory discovery by crawling the DOM of any link found in the target URL.')
+    parser.add_argument('-bD', '--bruteforceDirectories', help='Toggle directory discovery via bruteforce enumeration.')
+    parser.add_argument('-c', '--crawl', action='store_true', help='Toggle directory discovery by crawling the DOM of any link found in the target URL. [Required -bD]')
     
     # SUBDOMAIN DISCOVERY module flags
-    parser.add_argument('-bS', '--bruteforceSubdomain', help='Toggle subdomain discovery via bruteforce enumeration.')
+    parser.add_argument('-bS', '--bruteforceSubdomains', help='Toggle subdomain discovery via bruteforce enumeration.')
     parser.add_argument('-oS', '--osintSubdomain', help='Toggle subdomain enumeration via consulting open source intelligence.')
 
     # INJECTION POINT module flags
-    parser.add_argument('-fS', '--findSurface', help='Toggle automatic discovery of potential injection points within a URLs DOM.')
+    parser.add_argument('-fS', '--find_Surface', help='Toggle automatic discovery of potential injection points within a URLs DOM.')
     parser.add_argument('-r', '--rake', help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values)')
 
     #---

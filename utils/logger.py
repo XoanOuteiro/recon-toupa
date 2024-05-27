@@ -8,7 +8,8 @@ theme = Theme({
     "success": "green",
     "redirect": "yellow",
     "client_error": "red",
-    "server_error": "blue"
+    "server_error": "blue",
+    "child_content": "magenta"
 })
 
 console = Console(theme=theme)
@@ -54,3 +55,20 @@ class Logger:
             console.print(Panel(log_message, border_style=color))
         else:
             console.print(Panel(log_message))
+
+    def log_childrenContent(self, message):
+        '''
+            Log a message for content found by crawling with a datetime timestamp
+        '''
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        prefix_color = "bold blue"
+
+        dt_prefix = Text("DT: ", style=prefix_color)
+        dt_text = Text(current_time, style="white")
+
+        url_prefix = Text("New Directory: ", style=prefix_color)
+        url_text = Text(message, style="child_content")
+
+        log_message = dt_prefix + dt_text + "\n" + url_prefix + url_text
+        
+        console.print(Panel(log_message, border_style="child_content"))
