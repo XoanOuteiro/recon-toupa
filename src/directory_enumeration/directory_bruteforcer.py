@@ -75,10 +75,3 @@ class DirectoryBruteforcer:
 
         except FileNotFoundError:
             print(f"Wordlist file not found: {self.wordlistPath}")
-
-if __name__ == "__main__":
-    target = 'http://example.com'
-    wordlistPath = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt'
-    crawl = True  # Set to False to disable crawling
-    bruteforcer = DirectoryBruteforcer(target, wordlistPath, crawl)
-    bruteforcer.run()
