@@ -20,17 +20,20 @@ def buildArgs():
     # version flag
     parser.add_argument('-v', '--version', action='version', version=f'{HeaderPrinter.currentVersion}')
 
+    #URL
+    parser.add_argument('-u','--url', help='Specify the target of the action.')
+
     # DIRECTORY DISCOVERY module flags
-    parser.add_argument('-bD', '--bruteforceDirectories', help='Toggle directory discovery via bruteforce enumeration.')
+    parser.add_argument('-bD', '--bruteforceDirectories', action='store_true', help='Toggle directory discovery via bruteforce enumeration.')
     parser.add_argument('-c', '--crawl', action='store_true', help='Toggle directory discovery by crawling the DOM of any link found in the target URL. [Required -bD]')
     
     # SUBDOMAIN DISCOVERY module flags
-    parser.add_argument('-bS', '--bruteforceSubdomains', help='Toggle subdomain discovery via bruteforce enumeration.')
-    parser.add_argument('-oS', '--osintSubdomain', help='Toggle subdomain enumeration via consulting open source intelligence.')
+    parser.add_argument('-bS', '--bruteforceSubdomains',  action='store_true',help='Toggle subdomain discovery via bruteforce enumeration.')
+    parser.add_argument('-oS', '--osintSubdomain',  action='store_true',help='Toggle subdomain enumeration via consulting open source intelligence.')
 
     # INJECTION POINT module flags
-    parser.add_argument('-fS', '--find_Surface', help='Toggle automatic discovery of potential injection points within a URLs DOM.')
-    parser.add_argument('-r', '--rake', help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values)')
+    parser.add_argument('-fS', '--find_Surface',  action='store_true',help='Toggle automatic discovery of potential injection points within a URLs DOM.')
+    parser.add_argument('-r', '--rake',  action='store_true',help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values)')
 
     #---
 

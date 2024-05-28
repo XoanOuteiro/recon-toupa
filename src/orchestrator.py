@@ -14,7 +14,7 @@ class Orchestrator:
 
     
     def run_module_bruteDir(self):
-        bruteforcer_module = DirectoryBruteforcer(self.args.bruteforceDirectories, crawl= self.args.crawl)
+        bruteforcer_module = DirectoryBruteforcer(self.args.url, crawl= self.args.crawl)
         bruteforcer_module.run()
 
     
@@ -23,9 +23,10 @@ class Orchestrator:
             Parses the stored arguments and executes the corresponding modules
         '''
 
-        if self.args.bruteforceDirectories :
+        if self.args.bruteforceDirectories and self.args.url:
 
             self.run_module_bruteDir()
+
 
         else:
             print('[!!!] Usage incorrect, please check -h/--help for instructions.')
