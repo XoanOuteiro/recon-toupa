@@ -1,10 +1,15 @@
 import re
-from bs4 import BeautifulSoup
+import requests
+from utils.logger import Logger
 
 class DomParser:
     '''
         Manages everything related to interpreting HTML responses for attack surface and exposed data
     '''
+
+    data = None
+
+    logger : Logger = None
 
     # Regex patterns for potential API keys
     # From: https://github.com/odomojuli/regextokens
@@ -78,29 +83,50 @@ class DomParser:
             r'amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-10-9a-f1{4}-[0-9a]{4}-[0-9a-f]{12}', # Auth Token
         ]
 
-    def __init__(self):
+    def __init__(self, url : str):
         '''
             Instances an object of this class.
             Content to parse is passed to process()
         '''
-        pass
+        self.logger = Logger()
 
-    def process(self, data):
+        self.data = self.requestInfo(url)
+        if self.data:
+            self.process
+        else:
+            self.logger.log_unreachable(url)
+
+
+    def process(self):
         '''
             Analyzes the data and calls for printing of any
             potentially valuable info found
         '''
 
-    def getApiKeys(self, data):
+    def getApiKeys(self):
         '''
             Parses data with regex to attempt to extract 
             API keys
         '''        
         api_results = []
         for pattern in self.api_key_patterns:
-            found_keys = re.findall(pattern, data)
+            found_keys = re.findall(pattern, self.data)
             api_results.extend(found_keys)
         
         return api_results
+    
+    def getOpenRedirects(self):
+        pass
+
+    def getAllInjectionPoints(self):
+        pass
+
+    def requestInfo(self, url : str):
+
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.text
+        else:
+            return None
 
 

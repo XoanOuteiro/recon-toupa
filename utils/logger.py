@@ -72,3 +72,6 @@ class Logger:
         log_message = dt_prefix + dt_text + "\n" + url_prefix + url_text
         
         console.print(Panel(log_message, border_style="child_content"))
+
+    def log_unreachable(self, url):
+        console.print(Panel(f'!!! -- TARGET UNREACHABLE -- @{url}'))
