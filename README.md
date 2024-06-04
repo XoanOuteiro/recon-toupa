@@ -31,7 +31,7 @@ TBD
 | -u / --url | Needed for every attack module. Specifies the URL to be attacked, needs a protocol) |
 | -bD / --bruteforceDirectories | Specifies to load de directory bruteforcer module. Uses a SecList wordlist |
 | -c / --crawl | Needs bruteforcer to be enabled. Specifies to scrape HTML response of any valid bruteforce entry for URLs |
-
+| -r / --rake | Parses HTML data, checking against a list of RegEx ressembling common API keys |
 
 
 
