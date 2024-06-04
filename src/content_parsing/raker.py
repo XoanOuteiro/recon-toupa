@@ -101,13 +101,12 @@ class Raker:
         if self.data:
             self.logger.log_api_rake_start(url)
 
-            results = self.getApiKeys()
+            results = self.getApiKeys(self.data)
             self.logger.log_api_results(results)
-            
         else:
             self.logger.log_unreachable(url)
 
-    def getApiKeys(self):
+    def getApiKeys(self, data):
         '''
             Parses data with regex to attempt to extract 
             API keys
@@ -115,7 +114,7 @@ class Raker:
         api_results = []
         
         for pattern in self.api_key_patterns:
-            found_keys = re.findall(pattern, self.data)
+            found_keys = re.findall(pattern, data)
             api_results.extend(found_keys)
         
         return api_results

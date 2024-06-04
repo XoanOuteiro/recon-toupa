@@ -1,6 +1,7 @@
 import requests
 import re
 from utils.logger import Logger
+from src.content_parsing.raker import Raker
 
 class DirectoryBruteforcer:
     '''
@@ -8,13 +9,17 @@ class DirectoryBruteforcer:
         appended to a URL
     '''
 
+    raker : Raker = None
     logger: Logger = None
 
-    def __init__(self, target: str, wordlistPath: str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt', crawl: bool = False):
+    def __init__(self, target: str, wordlistPath: str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt', crawl: bool = False, rake: bool = False):
         '''
             Instances a Directory bruteforcer for the given target and using the provided wordlist
             for enumeration. If crawl is True, it will parse HTML content to find additional directories.
         '''
+
+        if rake:
+            self.raker = Raker()
 
         print('>> Bruteforcing directories ...')
 
@@ -23,6 +28,7 @@ class DirectoryBruteforcer:
         self.target = target.rstrip('/')
         self.wordlistPath = wordlistPath
         self.crawl = crawl
+        self.rake = rake
         self.discovered_directories = set()
 
     def check_directory(self, directory):
@@ -37,6 +43,9 @@ class DirectoryBruteforcer:
                 self.logger.log_bruteforceDiscovery(url, response.status_code)
                 if self.crawl:
                     self.parse_html_for_links(response.text)
+                if self.rake:
+                    results = self.raker.getApiKeys(response.text)
+                    self.logger.log_api_results(results)
 
         except requests.RequestException as e:
             print(f'Error checking {url}: {e}')

@@ -15,7 +15,7 @@ class Orchestrator:
 
     
     def run_module_bruteDir(self):
-        bruteforcer_module = DirectoryBruteforcer(self.args.url, crawl= self.args.crawl)
+        bruteforcer_module = DirectoryBruteforcer(self.args.url, crawl= self.args.crawl, rake = self.args.rake)
         bruteforcer_module.run()
 
     def run_module_rake(self):
