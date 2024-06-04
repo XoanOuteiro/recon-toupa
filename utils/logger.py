@@ -74,4 +74,21 @@ class Logger:
         console.print(Panel(log_message, border_style="child_content"))
 
     def log_unreachable(self, url):
+        '''
+            Logs an error message for URLs that cannot be requested
+        '''
         console.print(Panel(f'!!! -- TARGET UNREACHABLE -- @{url}'))
+
+    def log_api_results(self, results):
+        '''
+            Logs the results for API key raking
+        '''
+        if len(results) > 0:
+            for item in results:
+                console.print(Panel(f'{item}'))
+        else:
+            console.print(Panel(f'!> No API keys found at target HTML'))
+
+    def log_api_rake_start(self, url):
+
+        console.print(Panel(f'>> Scraping {url} for API keys...'))

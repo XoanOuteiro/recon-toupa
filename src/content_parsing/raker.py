@@ -2,7 +2,7 @@ import re
 import requests
 from utils.logger import Logger
 
-class DomParser:
+class Raker:
     '''
         Manages everything related to interpreting HTML responses for attack surface and exposed data
     '''
@@ -92,7 +92,8 @@ class DomParser:
 
         self.data = self.requestInfo(url)
         if self.data:
-            self.process
+            self.logger.log_api_rake_start(url)
+            self.process()
         else:
             self.logger.log_unreachable(url)
 
@@ -102,6 +103,8 @@ class DomParser:
             Analyzes the data and calls for printing of any
             potentially valuable info found
         '''
+        results = self.getApiKeys()
+        self.logger.log_api_results(results)
 
     def getApiKeys(self):
         '''
@@ -109,24 +112,29 @@ class DomParser:
             API keys
         '''        
         api_results = []
+        
         for pattern in self.api_key_patterns:
             found_keys = re.findall(pattern, self.data)
             api_results.extend(found_keys)
         
         return api_results
-    
-    def getOpenRedirects(self):
-        pass
-
-    def getAllInjectionPoints(self):
-        pass
 
     def requestInfo(self, url : str):
+        '''
+            Attempt to get HTML response for input url
+            Returns HTMl as str if found, returns None otherwise
+        '''
 
-        response = requests.get(url)
-        if response.status_code == 200:
-            return response.text
-        else:
+        try:
+            response = requests.get(url)
+
+            if response.status_code == 200:
+                    return response.text
+            else:
+                return None
+            
+        except Exception as error:
             return None
+        
 
 
