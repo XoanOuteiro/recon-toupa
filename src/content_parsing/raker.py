@@ -83,28 +83,29 @@ class Raker:
             r'amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-10-9a-f1{4}-[0-9a]{4}-[0-9a-f]{12}', # Auth Token
         ]
 
-    def __init__(self, url : str):
+    def __init__(self):
         '''
             Instances an object of this class.
             Content to parse is passed to process()
         '''
         self.logger = Logger()
 
-        self.data = self.requestInfo(url)
-        if self.data:
-            self.logger.log_api_rake_start(url)
-            self.process()
-        else:
-            self.logger.log_unreachable(url)
 
-
-    def process(self):
+    def process(self, url:str):
         '''
             Analyzes the data and calls for printing of any
             potentially valuable info found
         '''
-        results = self.getApiKeys()
-        self.logger.log_api_results(results)
+
+        self.data = self.requestInfo(url)
+        if self.data:
+            self.logger.log_api_rake_start(url)
+
+            results = self.getApiKeys()
+            self.logger.log_api_results(results)
+            
+        else:
+            self.logger.log_unreachable(url)
 
     def getApiKeys(self):
         '''

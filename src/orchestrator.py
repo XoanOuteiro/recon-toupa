@@ -19,7 +19,7 @@ class Orchestrator:
         bruteforcer_module.run()
 
     def run_module_rake(self):
-        raker = Raker(self.args.url) # Launches process method at startup if and only if url can be reached
+        raker = Raker().process(self.args.url)
 
     
     def run(self):
