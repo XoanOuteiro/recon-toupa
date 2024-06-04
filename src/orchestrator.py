@@ -1,3 +1,8 @@
+'''
+    >> RECON-TOUPA Orchestrator Script
+    >> Developed by: @XoanOuteiro
+'''
+
 from src.directory_enumeration.directory_bruteforcer import DirectoryBruteforcer
 from src.content_parsing.raker import Raker
 

@@ -1,3 +1,8 @@
+'''
+    >> RECON-TOUPA DirectoryBruteforcer Module
+    >> Developed by: @XoanOuteiro
+'''
+
 import requests
 import re
 from utils.logger import Logger

@@ -1,3 +1,8 @@
+'''
+    >> RECON-TOUPA SurfaceFinder Module
+    >> Developed by: @XoanOuteiro
+'''
+
 from utils.logger import Logger
 import re
 import requests

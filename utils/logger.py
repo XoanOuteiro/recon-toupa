@@ -1,3 +1,8 @@
+'''
+    >> RECON-TOUPA Logger Module
+    >> Developed by: @XoanOuteiro
+'''
+
 from datetime import datetime
 from rich.console import Console
 from rich.theme import Theme

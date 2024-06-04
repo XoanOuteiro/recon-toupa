@@ -1,3 +1,8 @@
+'''
+    >> RECON-TOUPA Raker Module
+    >> Developed by: @XoanOuteiro
+'''
+
 import re
 import requests
 from utils.logger import Logger
