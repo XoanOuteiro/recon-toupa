@@ -7,9 +7,12 @@ from rich.text import Text
 theme = Theme({
     "success": "green",
     "redirect": "yellow",
+    "nothing_found": "yellow",
     "client_error": "red",
     "server_error": "blue",
-    "child_content": "magenta"
+    "child_content": "magenta",
+    "api_key_found": "blue",
+    "start_message": "green"
 })
 
 console = Console(theme=theme)
@@ -77,7 +80,7 @@ class Logger:
         '''
             Logs an error message for URLs that cannot be requested
         '''
-        console.print(Panel(f'!!! -- TARGET UNREACHABLE -- @{url}'))
+        console.print(Panel(f'!!! -- TARGET UNREACHABLE -- @{url}', border_style='client_error'))
 
     def log_api_results(self, results):
         '''
@@ -85,10 +88,10 @@ class Logger:
         '''
         if len(results) > 0:
             for item in results:
-                console.print(Panel(f'{item}'))
+                console.print(Panel(f'Potential key: {item}', border_style='api_key_found'))
         else:
-            console.print(Panel(f'!> No API keys found at target HTML'))
+            console.print(Panel(f'!> No API keys found at target HTML', border_style='nothing_found'))
 
     def log_api_rake_start(self, url):
 
-        console.print(Panel(f'>> Scraping {url} for API keys...'))
+        console.print(Panel(f'>> Scraping {url} for API keys...', border_style='start_message'))
