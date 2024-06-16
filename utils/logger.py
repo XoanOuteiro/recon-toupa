@@ -123,7 +123,7 @@ class Logger:
 
         log_message = time_prefix + time_text + "\n" + url_prefix + url_text + "\n" + type_prefix + type_text + "\n" + regmatch_prefix + regmatch_text
 
-        self.console.print(Panel(log_message, title="Potential Open Redirect", border_style="child_content"))
+        console.print(Panel(log_message, title="Potential Open Redirect", border_style="child_content"))
 
     def log_url_with_params(self, url):
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -139,4 +139,4 @@ class Logger:
 
         log_message = time_prefix + time_text + "\n" + url_prefix + url_text + "\n" + type_prefix + type_text
 
-        self.console.print(Panel(log_message, title="URL with Parameters", border_style="child_content"))
+        console.print(Panel(log_message, title="URL with Parameters", border_style="child_content"))
