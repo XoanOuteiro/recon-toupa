@@ -27,7 +27,7 @@ class Orchestrator:
     def run_module_rake(self):
         raker = Raker().process(self.args.url)
 
-    def run_surface_finder():
+    def run_surface_finder(self):
         surface_Finder = SurfaceFinder()
         surface_Finder.targer(self.args.url)
 
