@@ -30,9 +30,12 @@ class SurfaceFinder:
         if content:
 
             self.logger.log_surface_finder_start(url)
-            self.parseForAllParams(content)
+            self.parseForAllParams()
             self.parseForOR(content)
             # self.parseForXSS(content)
+            for url in self.extracted_urls:
+                self.logger.log_url_with_params(url)  # Log each URL with parameters
+
         else:
             self.logger.log_unreachable(url)
 
