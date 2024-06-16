@@ -29,7 +29,7 @@ class Orchestrator:
 
     def run_surface_finder(self):
         surface_Finder = SurfaceFinder()
-        surface_Finder.targer(self.args.url)
+        surface_Finder.target(self.args.url)
 
     
     def run(self):
