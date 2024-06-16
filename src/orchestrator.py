@@ -5,6 +5,7 @@
 
 from src.directory_enumeration.directory_bruteforcer import DirectoryBruteforcer
 from src.content_parsing.raker import Raker
+from src.content_parsing.surface_finder import SurfaceFinder
 
 class Orchestrator:
     '''
@@ -26,6 +27,10 @@ class Orchestrator:
     def run_module_rake(self):
         raker = Raker().process(self.args.url)
 
+    def run_surface_finder():
+        surface_Finder = SurfaceFinder()
+        surface_Finder.targer(self.args.url)
+
     
     def run(self):
         '''
@@ -40,6 +45,9 @@ class Orchestrator:
 
             self.run_module_rake()
 
+        if self.args.findSurface and self.args.url:
+
+            self.run_surface_finder()
 
         else:
             print('[!!!] Usage incorrect, please check -h/--help for instructions.')

@@ -32,7 +32,7 @@ def buildArgs():
     parser.add_argument('-oS', '--osintSubdomain',  action='store_true',help='Toggle subdomain enumeration via consulting open source intelligence.')
 
     # INJECTION POINT module flags
-    parser.add_argument('-fS', '--find_Surface',  action='store_true',help='Toggle automatic discovery of potential injection points within a URLs DOM.')
+    parser.add_argument('-fS', '--findSurface',  action='store_true',help='Toggle automatic discovery of potential injection points within a URLs DOM.')
     parser.add_argument('-r', '--rake',  action='store_true',help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values)')
 
     #---

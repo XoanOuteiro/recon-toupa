@@ -102,3 +102,21 @@ class Logger:
         console.print(Panel(f'>> Scraping {url} for API keys...', border_style='start_message'))
 
     def log_potential_open_redirect(self, url, word):
+        
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        time_prefix = Text("Time: ", style="bold blue")
+        time_text = Text(current_time, style="white")
+
+        url_prefix = Text("URL: ", style="bold blue")
+        url_text = Text(url, style="cyan")
+
+        type_prefix = Text("Type: ", style="bold blue")
+        type_text = Text("Open Redir.", style="white")
+
+        regmatch_prefix = Text("RegMatch: ", style="bold blue")
+        regmatch_text = Text(word, style="white")
+
+        log_message = time_prefix + time_text + "\n" + url_prefix + url_text + "\n" + type_prefix + type_text + "\n" + regmatch_prefix + regmatch_text
+
+        self.console.print(Panel(log_message, title="Potential Open Redirect", border_style="bold blue"))

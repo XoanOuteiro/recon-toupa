@@ -55,13 +55,12 @@ class SurfaceFinder:
                 if isinstance(value, str) and '?' in value:
                     urls.append(value)
 
-        # Store the extracted URLs in the instance variable
         self.extracted_urls = urls
 
     def parseForOR(self):
 
         with open(self.or_wordlist_path, 'r') as file:
-            
+
             for line in file:
                 word = line.strip()
 
@@ -73,5 +72,5 @@ class SurfaceFinder:
                     for url in self.extracted_urls:
 
                         if or_pattern.search(url):
-                            self.logger.log_vulnerability(url, f"Potential open redirect vulnerability found with keyword: {word}")
+                            self.logger.log_potential_open_redirect(url, word)
 
