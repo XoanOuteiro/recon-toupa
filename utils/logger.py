@@ -101,8 +101,12 @@ class Logger:
 
         console.print(Panel(f'>> Scraping {url} for API keys...', border_style='start_message'))
 
+    def log_surface_finder_start(self, url):
+
+        console.print(Panel(f'>> Scraping {url} for attack surface...', border_style='start_message'))
+
     def log_potential_open_redirect(self, url, word):
-        
+
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         time_prefix = Text("Time: ", style="bold blue")

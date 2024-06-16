@@ -28,8 +28,10 @@ class SurfaceFinder:
         content = self.getTarget(url)
 
         if content:
+
+            self.logger.log_surface_finder_start(url)
             self.parseForAllParams(content)
-            self.parseForOR()
+            self.parseForOR(content)
             # self.parseForXSS(content)
         else:
             self.logger.log_unreachable(url)
