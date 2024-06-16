@@ -20,7 +20,30 @@ This application is currently a WIP (work-in-progress), usage of any script on a
 
 ## Installation
 
-TBD
+Currently there are no installation methods, but the install.sh mentioned below will soon be available as the app reaches 0.2
+
+### Debian based OS
+
+First clone the repository and move into it's folder:
+``` shell
+git clone https://github.com/XoanOuteiro/recon-toupa
+cd recon-toupa
+```
+Then install the requirements with Python 3.12
+``` shell
+pip install -r requirements.txt
+```
+
+### Arch based OS
+First clone the repository and move into it's folder:
+``` shell
+git clone https://github.com/XoanOuteiro/recon-toupa
+cd recon-toupa
+```
+Then use the install.sh script to use pacman to install the required packages for Python 3.12:
+``` shell
+sh ./install.sh
+```
 
 ## Usage
 
@@ -31,7 +54,7 @@ TBD
 | -u / --url | Needed for every attack module. Specifies the URL to be attacked, needs a protocol) |
 | -bD / --bruteforceDirectories | Specifies to load de directory bruteforcer module. Uses a SecList wordlist |
 | -c / --crawl | Needs bruteforcer to be enabled. Specifies to scrape HTML response of any valid bruteforce entry for URLs |
-| -r / --rake | Parses HTML data, checking against a list of RegEx ressembling common API keys |
-
+| -r / --rake | Parses HTML data, checking against a list of RegEx ressembling common API keys, can be used along -bD and -c or individually |
+| -fS / --findSurface | Parses HTML data against an ammount of wordlists to extract all parameters and highlight potentially vulnerable ones |
 
 
