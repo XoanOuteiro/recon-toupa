@@ -63,19 +63,14 @@ class SurfaceFinder:
         self.extracted_urls = urls
 
     def parseForOR(self):
-
         with open(self.or_wordlist_path, 'r') as file:
-
+            
             for line in file:
                 word = line.strip()
 
                 if word:
-                    # Create a regex pattern to match the current word
-                    or_pattern = re.compile(r'\b' + re.escape(word) + r'\b', re.IGNORECASE)
-
-                    # Check each extracted URL for matches against the current word pattern
+                    # Check each extracted URL for the presence of the current word as a substring
                     for url in self.extracted_urls:
-
-                        if or_pattern.search(url):
+                        if word.lower() in url.lower():  # Case insensitive check
                             self.logger.log_potential_open_redirect(url, word)
 
