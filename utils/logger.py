@@ -100,3 +100,5 @@ class Logger:
     def log_api_rake_start(self, url):
 
         console.print(Panel(f'>> Scraping {url} for API keys...', border_style='start_message'))
+
+    def log_potential_open_redirect(self, url, word):
