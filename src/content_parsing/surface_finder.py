@@ -36,9 +36,9 @@ class SurfaceFinder:
                 self.logger.log_unreachable(url)
 
         else:
-            self.parseContent(content)
+            self.parseContent(url, content)
 
-    def parseContent(self, content):
+    def parseContent(self, url, content):
             self.logger.log_surface_finder_start(url)
             self.parseForAllParams(content)
             self.parseForOR()
