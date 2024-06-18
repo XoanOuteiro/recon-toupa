@@ -13,6 +13,8 @@ class SurfaceFinder:
     logger: Logger = None
 
     or_wordlist_path = 'wordlists/injection_points/open_redirect.txt'  # Path for common injection points for open redirect vulnerabilities
+    sqli_wordlist_path = 'wordlists/injection_points/sqli.txt'  # Path for common injection points for sqli vulnerabilities
+    xss_wordlist_path = 'wordlists/injection_points/xss.txt'  # Path for common injection points for xss vulnerabilities
     extracted_urls = []
 
     def __init__(self):
@@ -32,7 +34,8 @@ class SurfaceFinder:
             self.logger.log_surface_finder_start(url)
             self.parseForAllParams(content)
             self.parseForOR()
-            # self.parseForXSS(content)
+            self.parseForXSS()
+            self.parseForSQLI()
             for url in self.extracted_urls:
                 self.logger.log_url_with_params(url)  # Log each URL with parameters
 
@@ -73,4 +76,27 @@ class SurfaceFinder:
                     for url in self.extracted_urls:
                         if word.lower() in url.lower():  # Case insensitive check
                             self.logger.log_potential_open_redirect(url, word)
+
+    def parseForXSS(self):
+        with open(self.xss_wordlist_path, 'r') as file:
+
+            for line in file:
+                word = line.strip()
+
+                if word:
+                    for url in self.extracted_urls:
+                        if word.lower() in url.lower():
+                            self.logger.log_potential_xss(url, word)
+
+    def parseForSQLI(self):
+        with open(self.sqli_wordlist_path, 'r') as file:
+
+            for line in file:
+                word = line.strip()
+
+                if word:
+                    for url in self.extracted_urls:
+                        if word.lower() in url.lower():
+                            self.logger.log_potential_sqli(url, word)
+        
 
