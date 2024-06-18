@@ -27,7 +27,7 @@ class SurfaceFinder:
             for common injection points
         '''
 
-        if not content:
+        if content is None:
             content = self.getTarget(url)
 
             if content:
