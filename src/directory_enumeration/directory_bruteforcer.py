@@ -26,9 +26,8 @@ class DirectoryBruteforcer:
         if rake:
             self.raker = Raker()
 
-        print('>> Bruteforcing directories ...')
-
         self.logger = Logger()
+        self.logger.log_bruteforce_directory_start(target)
 
         self.target = target.rstrip('/')
         self.wordlistPath = wordlistPath

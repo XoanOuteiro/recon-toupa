@@ -97,6 +97,10 @@ class Logger:
         else:
             console.print(Panel(f'!> No API keys found at target HTML', border_style='nothing_found'))
 
+    def log_bruteforce_directory_start(self, url):
+
+        console.print(Panel(f'>> Starting bruteforce enumeration attack against {url} ...', border_style='start_message'))
+
     def log_api_rake_start(self, url):
 
         console.print(Panel(f'>> Scraping {url} for API keys...', border_style='start_message'))
