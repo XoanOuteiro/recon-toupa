@@ -7,6 +7,7 @@ import requests
 import re
 from utils.logger import Logger
 from src.content_parsing.raker import Raker
+from src.content_parsing.surface_finder import SurfaceFinder
 
 class DirectoryBruteforcer:
     '''
@@ -17,7 +18,7 @@ class DirectoryBruteforcer:
     raker : Raker = None
     logger: Logger = None
 
-    def __init__(self, target: str, wordlistPath: str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt', crawl: bool = False, rake: bool = False):
+    def __init__(self, target: str, wordlistPath: str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt', crawl: bool = False, rake: bool = False, surfacer = False):
         '''
             Instances a Directory bruteforcer for the given target and using the provided wordlist
             for enumeration. If crawl is True, it will parse HTML content to find additional directories.
@@ -26,6 +27,9 @@ class DirectoryBruteforcer:
         if rake:
             self.raker = Raker()
 
+        if surfacer:
+            self.surfaceFinder = SurfaceFinder()
+
         self.logger = Logger()
         self.logger.log_bruteforce_directory_start(target)
 
@@ -33,6 +37,7 @@ class DirectoryBruteforcer:
         self.wordlistPath = wordlistPath
         self.crawl = crawl
         self.rake = rake
+        self.surfacer = surfacer
         self.discovered_directories = set()
 
     def check_directory(self, directory):
@@ -50,6 +55,8 @@ class DirectoryBruteforcer:
                 if self.rake:
                     results = self.raker.getApiKeys(response.text)
                     self.logger.log_api_results(results)
+                if self.surfacer:
+                    self.surfaceFinder.target(directory, response.text)
 
         except requests.RequestException as e:
             print(f'Error checking {url}: {e}')

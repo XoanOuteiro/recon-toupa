@@ -20,17 +20,25 @@ class SurfaceFinder:
     def __init__(self):
         self.logger = Logger()  # Fix the logger initialization
 
-    def target(self, url):
+    def target(self, url, content = None):
         '''
             Attempts to check the DOM content
             of a HTTP request against many wordlists
             for common injection points
         '''
 
-        content = self.getTarget(url)
+        if not content:
+            content = self.getTarget(url)
 
-        if content:
+            if content:
+                self.parseContent(self.content)
+            else:
+                self.logger.log_unreachable(url)
 
+        else:
+            self.parseContent(content)
+
+    def parseContent(self, content):
             self.logger.log_surface_finder_start(url)
             self.parseForAllParams(content)
             self.parseForOR()
@@ -38,9 +46,6 @@ class SurfaceFinder:
             self.parseForSQLI()
             for url in self.extracted_urls:
                 self.logger.log_url_with_params(url)  # Log each URL with parameters
-
-        else:
-            self.logger.log_unreachable(url)
 
     def getTarget(self, url):
         try:
