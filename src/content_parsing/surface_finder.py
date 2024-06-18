@@ -31,7 +31,7 @@ class SurfaceFinder:
             content = self.getTarget(url)
 
             if content:
-                self.parseContent(self.content)
+                self.parseContent(content)
             else:
                 self.logger.log_unreachable(url)
 
