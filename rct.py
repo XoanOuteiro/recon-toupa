@@ -28,7 +28,7 @@ def buildArgs():
     parser.add_argument('-c', '--crawl', action='store_true', help='Toggle directory discovery by crawling the DOM of any link found in the target URL. [Required -bD]')
     
     # SUBDOMAIN DISCOVERY module flags
-    parser.add_argument('-bS', '--bruteforceSubdomains',  action='store_true',help='Toggle subdomain discovery via bruteforce enumeration.')
+    parser.add_argument('-bS', '--bruteforceSubdomains',  action='store_true',help='Toggle subdomain discovery via bruteforce enumeration. [RUN WITHOUT PROTOCOL]')
     parser.add_argument('-oS', '--osintSubdomain',  action='store_true',help='Toggle subdomain enumeration via consulting open source intelligence.')
 
     # INJECTION POINT module flags

@@ -257,3 +257,7 @@ class Logger:
             console.print(Panel(log_message))
 
         self._write_to_log(f'{message} discovered via bruteforce attack')
+
+    def log_nonexistant_sub(self, url)
+        console.print(Panel(f'>> {url} was not a valid subdomain', border_style='nothing_found'))
+        self._write_to_log(f'{url} was not a valid subdomain')
