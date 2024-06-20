@@ -25,7 +25,7 @@ class SubdomainBruteforcer:
                 self.logger.log_subdomain_bruteforceDiscovery(url, response.status_code)
 
         except requests.RequestException as e:
-            print(f'Error checking {url}: {e}')
+            self.logger.log_nonexistant_sub(url)
 
     def run(self):
         '''
