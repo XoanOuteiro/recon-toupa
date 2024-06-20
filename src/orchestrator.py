@@ -4,6 +4,7 @@
 '''
 
 from src.directory_enumeration.directory_bruteforcer import DirectoryBruteforcer
+from src.directory_enumeration.subdomain_bruteforcer import SubdomainBruteforcer
 from src.content_parsing.raker import Raker
 from src.content_parsing.surface_finder import SurfaceFinder
 
@@ -31,6 +32,10 @@ class Orchestrator:
         surface_Finder = SurfaceFinder()
         surface_Finder.target(self.args.url)
 
+    def run_subdomain_bruteforcer(self):
+        sbd = SubdomainBruteforcer(self.args.url)
+        sbd.run()
+
     
     def run(self):
         '''
@@ -48,6 +53,10 @@ class Orchestrator:
         if self.args.findSurface and self.args.url:
 
             self.run_surface_finder()
+
+        if self.args.bruteforceSubdomains and self.args.url:
+            
+            self.run_subdomain_bruteforcer()
 
         else:
             print('[!!!] Usage incorrect, please check -h/--help for instructions.')
