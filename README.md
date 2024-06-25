@@ -13,10 +13,10 @@ This application is currently a WIP (work-in-progress), usage of any script on a
 - Content-Discovery: Bruteforce Fuzzing
 - Content-Discovery: Directory Crawling
 - Content-Discovery: Bruteforce subdomain enumeration
-- Content-Discovery: OSINT subdomain enumeration
+- Content-Discovery: OSINT subdomain enumeration - TBD
 - Injection-Point Discovery: Open Redirect, XSS, SQLi ...
 - Data-Parsing: Automated API key discovery
-- Report-Creation: Per target reports
+- Report-Creation: Per target reports - TBD
 
 ## Installation
 
