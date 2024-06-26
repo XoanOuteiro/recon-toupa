@@ -5,6 +5,7 @@
 
 import requests
 import re
+import time
 from utils.logger import Logger
 from src.content_parsing.raker import Raker
 from src.content_parsing.surface_finder import SurfaceFinder
@@ -18,7 +19,7 @@ class DirectoryBruteforcer:
     raker : Raker = None
     logger: Logger = None
 
-    def __init__(self, target: str, wordlistPath: str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt', crawl: bool = False, rake: bool = False, surfacer = False):
+    def __init__(self, target: str, wordlistPath: str = 'wordlists/directory_bruteforce/directory-list-2.3-medium.txt', crawl: bool = False, rake: bool = False, surfacer = False, ruled_timeout = 0.0):
         '''
             Instances a Directory bruteforcer for the given target and using the provided wordlist
             for enumeration. If crawl is True, it will parse HTML content to find additional directories.
@@ -31,14 +32,16 @@ class DirectoryBruteforcer:
             self.surfaceFinder = SurfaceFinder()
 
         self.logger = Logger()
-        self.logger.log_bruteforce_directory_start(target)
 
         self.target = target.rstrip('/')
         self.wordlistPath = wordlistPath
         self.crawl = crawl
         self.rake = rake
         self.surfacer = surfacer
+        self.ruled_timeout = ruled_timeout
         self.discovered_directories = set()
+
+        self.logger.log_bruteforce_directory_start(target, self.ruled_timeout)
 
     def check_directory(self, directory):
         '''
@@ -47,6 +50,10 @@ class DirectoryBruteforcer:
         url = self.target + '/' + directory
 
         try:
+
+            if self.ruled_timeout:
+                time.sleep(self.ruled_timeout)
+
             response = requests.get(url)
             if response.status_code in [200, 300, 301, 302]:
                 self.logger.log_bruteforceDiscovery(url, response.status_code)

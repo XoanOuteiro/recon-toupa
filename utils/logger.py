@@ -123,9 +123,9 @@ class Logger:
         else:
             console.print(Panel(f'!> No API keys found at target HTML', border_style='nothing_found'))
 
-    def log_bruteforce_directory_start(self, url):
+    def log_bruteforce_directory_start(self, url, timeout):
 
-        console.print(Panel(f'>> Starting bruteforce enumeration attack against {url} ...', border_style='start_message'))
+        console.print(Panel(f'>> Starting bruteforce enumeration attack against {url} with a per-req pause of {timeout} ms', border_style='start_message'))
         self._write_to_log(f'started bruteforce attack against {url}')
 
     def log_api_rake_start(self, url):
