@@ -41,6 +41,7 @@ class DirectoryBruteforcer:
         self.ruled_timeout = ruled_timeout
         self.discovered_directories = set()
 
+        # Keep logger message after all field variable inits
         self.logger.log_bruteforce_directory_start(target, self.ruled_timeout)
 
     def check_directory(self, directory):

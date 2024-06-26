@@ -126,7 +126,7 @@ class Logger:
     def log_bruteforce_directory_start(self, url, timeout):
 
         console.print(Panel(f'>> Starting bruteforce enumeration attack against {url} with a per-req pause of {timeout} ms', border_style='start_message'))
-        self._write_to_log(f'started bruteforce attack against {url}')
+        self._write_to_log(f'started bruteforce attack against {url} - with timeout of: {timeout} ms')
 
     def log_api_rake_start(self, url):
 
