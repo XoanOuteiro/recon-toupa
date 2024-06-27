@@ -29,14 +29,14 @@ def buildArgs():
     
     # SUBDOMAIN DISCOVERY module flags
     parser.add_argument('-bS', '--bruteforceSubdomains',  action='store_true',help='Toggle subdomain discovery via bruteforce enumeration. [RUN WITHOUT PROTOCOL]')
-    parser.add_argument('-oS', '--osintSubdomain',  action='store_true',help='Toggle subdomain enumeration via consulting open source intelligence.')
+    parser.add_argument('-oS', '--osintSubdomain',  action='store_true',help='Toggle subdomain enumeration via consulting open source intelligence. - TBD')
 
     # INJECTION POINT module flags
     parser.add_argument('-fS', '--findSurface',  action='store_true',help='Toggle automatic discovery of potential injection points within a URLs DOM.')
     parser.add_argument('-r', '--rake',  action='store_true',help='Toggle the recovery of potential sensitive info in the specified URLs DOM (eg. APIKeys and other hardcoded values)')
 
     # CONTROL module flags
-    parser.add_argument('-p','--pause', help='Indicate the time to await per request [in ms, requires DirectoryBruteforcer to be enabled]')
+    parser.add_argument('-p','--pause', help='Indicate the time to await per request [in s, requires DirectoryBruteforcer to be enabled]')
 
     #---
 

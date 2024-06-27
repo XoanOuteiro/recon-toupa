@@ -22,7 +22,10 @@ class Orchestrator:
 
     
     def run_module_bruteDir(self):
-        bruteforcer_module = DirectoryBruteforcer(self.args.url, crawl= self.args.crawl, rake = self.args.rake, surfacer=self.args.findSurface, ruled_timeout=int(self.args.pause))
+
+        calculated_timeout = int(self.args.pause) if self.args.pause is not None else 0
+
+        bruteforcer_module = DirectoryBruteforcer(self.args.url, crawl= self.args.crawl, rake = self.args.rake, surfacer=self.args.findSurface, ruled_timeout=calculated_timeout)
         bruteforcer_module.run()
 
     def run_module_rake(self):
