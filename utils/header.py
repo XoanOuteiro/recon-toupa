@@ -2,7 +2,7 @@ from rich.console import Console
 from rich.text import Text
 
 class HeaderPrinter:
-    currentVersion = "Alpha 0.1.34"
+    currentVersion = "Alpha 0.1.54"
 
     logoAscii = """    ____                            ______                       
    / __ \\___  _________  ____      /_  __/___  __  ______  ____ _
